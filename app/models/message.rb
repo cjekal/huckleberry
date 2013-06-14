@@ -4,6 +4,16 @@ class Message < ActiveRecord::Base
   has_many :recipients
   has_many :channelMessages
   
+  class << self
+    def since(this_time)
+      where{ created_at > this_time }
+    end
+    
+    def desc
+      order("messages.created_at DESC")
+    end
+  end
+  
   def list_of_recipients
     recipients.map(&:user).map(&:name).join ", "
   end

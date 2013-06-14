@@ -29,6 +29,18 @@ describe MessagesController do
         expect(assigns(:message)).to be_a_new( Message )
       end
     end
+    
+    describe "GET index since" do
+      before do
+        get :index, { since: '1/1/2013' }
+      end
+      
+      it "assigns messages after the since param" do
+        messages = assigns(:messages)
+        since_messages = Message.since('1/1/2013'.to_datetime)
+        since_messages.should eq(since_messages)
+      end
+    end
   
     describe "GET show" do
       it "assigns the requested message as @message" do
@@ -37,7 +49,7 @@ describe MessagesController do
         assigns(:message).should eq(message)
       end
     end
-  
+    
     describe "GET new" do
       it "assigns a new message as @message" do
         get :new, {}

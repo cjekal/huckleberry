@@ -29,15 +29,5 @@ describe "Messages" do
         Warden.test_reset!
       end
     end
-    describe "pending approval" do
-      it "redirects to new user session" do
-        login_as users(:unapproved)
-        get messages_path
-        response.should redirect_to(new_user_session_url)
-      end
-      after do
-        Warden.test_reset!
-      end
-    end
   end
 end

@@ -3,7 +3,7 @@ class MessagesController < AuthenticatedController
   # GET /messages.json
   def index
     @message = Message.new()
-    @messages = Message.order('created_at desc').limit(10)
+    @messages = (params[:since].blank? ? Message : Message.since(params[:since].to_datetime)).desc.limit(10)
     
     respond_to do |format|
       format.html # index.html.erb
