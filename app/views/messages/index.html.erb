@@ -3,7 +3,7 @@
       <div class="page-header">
         Huckleberries
       </div>
-      <table class="table table-striped">
+      <table class="table table-striped" data-messages-url=<%= messages_url(format: 'json', since: '#{since}') %>>
       
       <% @messages.each do |message| %>
         <tr>
